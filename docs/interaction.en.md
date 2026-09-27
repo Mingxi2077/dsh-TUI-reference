@@ -172,6 +172,12 @@ On `Ctrl+V`, files copied from a file manager insert as paths.
 - A terminal that forwards a drop as pasted text (Ghostty sends a shell-escaped path
   through the PTY) stages it only when it is exactly one existing local image path —
   anything ambiguous stays verbatim text.
+- A Windows drop arrives as an OSC 8 hyperlink (`ESC ] 8 ; … ; file:///…`); its
+  `file://` URL is decoded to a local path for that same check instead of being
+  inserted as the raw URI.
+- Terminal control sequences (OSC/CSI and any leftover ESC) are stripped from a paste
+  payload before it reaches the composer; `TAB`, `CR`/`LF` and `DEL` keep their
+  existing input contract.
 - A staged `[Image #N]` is one unit in the composer:
   - The caret never rests inside it.
   - ←/→ step over it.

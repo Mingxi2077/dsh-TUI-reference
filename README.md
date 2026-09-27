@@ -191,6 +191,7 @@ Runtime path, module boundaries, performance notes and persistence locations: [A
 - Injected plugin context has no standalone display; it counts into the context segments.
 - `/model` switches by forking the session; the old session stays in `/resume`.
 - `Ctrl+V` needs platform clipboard tools; unsupported bitmap formats are rejected.
+- On native Windows a dropped file is still not attached: win32-input-mode decomposes the terminal's OSC 8 payload character by character, so the filename is lost. Such payloads are now stripped rather than shown as `[16;42;0;1;16;1…` garbage.
 - A background session lives inside this process and stops when the TUI exits.
 - `/thinking` is not persisted; `/compact` is unavailable under the `minimal` preset; `/update` needs a `dsh --profile` launch and is refused while a turn is running.
 
